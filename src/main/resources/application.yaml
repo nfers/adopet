@@ -1,0 +1,38 @@
+quarkus:
+  tls:
+    trust-all: false
+
+'%common':
+  quarkus:
+    http:
+      port: 8080
+    tls:
+      trust-all: false
+    hibernate-orm:
+      log:
+        sql: false
+        bind-parameters: true
+      database:
+        generation: validate
+    smallrye-openapi:
+      info-title: ADOPET - Alura Challenge
+      info-description: Microservice for Adopet
+    swagger-ui:
+      always-include: true
+      path: /swagger-ui
+
+'%dev':
+  quarkus:
+    config:
+      profile:
+        parent: common
+    datasource:
+      db-kind: postgresql
+      jdbc:
+        url: jdbc:postgresql://localhost:5432/postgres
+      password: postgres
+      username: postgres
+    hibernate-orm:
+      database:
+        generation: update
+        default-schema: adopet
